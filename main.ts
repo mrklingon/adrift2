@@ -74,10 +74,14 @@ function goeast () {
         }
     }
 }
+let center = 0
 let dir = 0
 dir = 0
 basic.forever(function () {
+    center = led.pointBrightness(2, 2)
+    led.plot(2, 2)
     basic.pause(100)
+    led.plotBrightness(2, 2, center)
     if (dir == 0) {
         northstars()
         gonorth()
