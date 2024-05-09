@@ -30,11 +30,19 @@ function gowest () {
         }
     }
 }
+input.onButtonPressed(Button.A, function () {
+    speed = speed / 2
+})
 input.onGesture(Gesture.LogoUp, function () {
     dir = 0
+    speed = 1
 })
 input.onGesture(Gesture.TiltLeft, function () {
     dir = 3
+    speed = 1
+})
+input.onButtonPressed(Button.B, function () {
+    speed = speed * 2
 })
 function northstars () {
     for (let index3 = 0; index3 <= 4; index3++) {
@@ -47,9 +55,11 @@ function northstars () {
 }
 input.onGesture(Gesture.TiltRight, function () {
     dir = 1
+    speed = 1
 })
 input.onGesture(Gesture.LogoDown, function () {
     dir = 2
+    speed = 1
 })
 function gonorth () {
     for (let gs3 = 0; gs3 <= 3; gs3++) {
@@ -75,12 +85,14 @@ function goeast () {
     }
 }
 let center = 0
+let speed = 0
 let dir = 0
 dir = 0
+speed = 1
 basic.forever(function () {
     center = led.pointBrightness(2, 2)
     led.plot(2, 2)
-    basic.pause(100)
+    basic.pause(100 / speed)
     led.plotBrightness(2, 2, center)
     if (dir == 0) {
         northstars()
