@@ -53,6 +53,12 @@ function northstars () {
         }
     }
 }
+input.onGesture(Gesture.Shake, function () {
+    led.plot(2, 2)
+    speed = 0
+    basic.pause(100)
+    led.plot(2, 2)
+})
 input.onGesture(Gesture.TiltRight, function () {
     dir = 1
     speed = 1
@@ -90,24 +96,26 @@ let dir = 0
 dir = 0
 speed = 1
 basic.forever(function () {
-    center = led.pointBrightness(2, 2)
-    led.plot(2, 2)
-    basic.pause(100 / speed)
-    led.plotBrightness(2, 2, center)
-    if (dir == 0) {
-        northstars()
-        gonorth()
-    }
-    if (dir == 1) {
-        eaststars()
-        goeast()
-    }
-    if (dir == 2) {
-        southstars()
-        gosouth()
-    }
-    if (dir == 3) {
-        weststars()
-        gowest()
+    if (speed != 0) {
+        center = led.pointBrightness(2, 2)
+        led.plot(2, 2)
+        basic.pause(100 / speed)
+        led.plotBrightness(2, 2, center)
+        if (dir == 0) {
+            northstars()
+            gonorth()
+        }
+        if (dir == 1) {
+            eaststars()
+            goeast()
+        }
+        if (dir == 2) {
+            southstars()
+            gosouth()
+        }
+        if (dir == 3) {
+            weststars()
+            gowest()
+        }
     }
 })
